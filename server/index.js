@@ -8,7 +8,7 @@ const morgan = require("morgan");
 app.use(morgan("dev"));
 
 // static middleware
-app.use(express.static(path.join(__dirname, "./path/to/static/assets")));
+app.use(express.static(path.join(__dirname, "../"))); //? why this works? before--->./path/to/static/assets
 
 // parsing middleware
 const bodyParser = require("body-parser");
@@ -24,10 +24,12 @@ app.listen(port, function () {
 });
 
 // for any requests that don't match one of our API routes
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../index.html"));
+// });
+
 app.get("*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "/Users/nancykwan/Desktop/boilermaker/index.html")
-  );
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // handle 500 errors
